@@ -10,7 +10,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyHeader()
+              .AllowAnyMethod()
+              .WithOrigins("http://localhost:4200", "https://localhost:4200");
+    });
+});
 var app = builder.Build();
 
 
@@ -19,5 +27,5 @@ var app = builder.Build();
 
 
 app.MapControllers();
-
+app.UseCors("AllowAll");
 app.Run();
