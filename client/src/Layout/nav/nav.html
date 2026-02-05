@@ -1,0 +1,40 @@
+<header class="fixed top-0 left-0 w-full z-50 h-16 flex items-center px-6 shadow-lg 
+        bg-linear-to-r from-[#42275a] to-[#734b6d] text-white">
+
+    <div class="flex items-center">
+        <a href="#" style="font-family: 'Dancing Script', cursive;" class="text-3xl mr-10">👑 Dating App</a>
+    </div>
+
+    <div class="absolute left-1/2 transform -translate-x-1/2 flex gap-10 text-lg">
+        <a href="#" class="px-4 py-2 hover:text-pink-200">Matches</a>
+        <a href="#" class="px-4 py-2 hover:text-pink-200">List</a>
+        <a href="#" class="px-4 py-2 hover:text-pink-200">Messages</a>
+    </div>
+
+    <div class="ml-auto flex items-center gap-4">
+        @if (accountService.currentUser(); as user) {
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn m-1">Menu</div>
+            <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                <li><a>Profile</a></li>
+                <li><a>Settings</a></li>
+                <li><a (click)="logout()">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <span class="font-semibold">{{ user.displayName }}</span>
+            <img src="/user.png" alt="User Icon" class="w-8 h-8 rounded-full border border-white" />
+        </div>
+        }
+        @else {
+        <form #loginForm="ngForm" (ngSubmit)="login()" class="flex items-center gap-4">
+            <input [(ngModel)]="creds.email" name="email" type="email" placeholder="Email"
+                class="input input-bordered input-sm bg-white text-black" />
+            <input [(ngModel)]="creds.password" name="password" type="password" placeholder="Password"
+                class="input input-bordered input-sm bg-white text-black" />
+            <button type="submit" class="btn btn-sm btn-primary">Login</button>
+        </form>
+        }
+    </div>
+</header>

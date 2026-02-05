@@ -1,0 +1,79 @@
+<div
+    class="min-h-screen flex items-center justify-center bg-linear-to-br from-rose-500 via-pink-500 to-red-500 py-12 px-4 sm:px-6 lg:px-8">
+
+    <div class="card w-full max-w-md bg-base-100 shadow-2xl">
+        <div class="card-body">
+
+            <h2
+                class="card-title text-3xl font-bold text-center justify-center mb-2 text-transparent bg-clip-text bg-linear-to-r from-rose-600 to-pink-600">
+                Get Started
+            </h2>
+            <p class="text-center text-base-content/60 text-sm mb-6">Find your match today.</p>
+
+            <form #RegisterForm="ngForm" (ngSubmit)="register()" class="space-y-4">
+
+                <div class="flex justify-center mb-6">
+                    <div class="relative group cursor-pointer">
+                        <div class="avatar placeholder">
+                            <div
+                                class="bg-neutral text-neutral-content rounded-full w-24 h-24 ring ring-primary ring-offset-base-100 ring-offset-2 transition-all group-hover:ring-4">
+                                <img *ngIf="creds.photoUrl" [src]="creds.photoUrl" alt="Avatar" />
+                                <span *ngIf="!creds.photoUrl" class="text-3xl">📷</span>
+                            </div>
+                        </div>
+                        <input type="file" (change)="onFileSelected($event)" accept="image/*"
+                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                        <div class="absolute bottom-0 right-0 bg-primary text-white rounded-full p-1 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">Display Name</span>
+                    </label>
+                    <input [(ngModel)]="creds.displayName" required name="displayName" type="text"
+                        placeholder="e.g. Alex" class="input input-bordered w-full focus:input-primary" />
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">Email</span>
+                    </label>
+                    <input [(ngModel)]="creds.email" required email name="email" type="email"
+                        placeholder="alex@example.com" class="input input-bordered w-full focus:input-primary" />
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">Password</span>
+                    </label>
+                    <input [(ngModel)]="creds.password" required minlength="6" name="password" type="password"
+                        placeholder="••••••••" class="input input-bordered w-full focus:input-primary" />
+                </div>
+
+                <div class="flex gap-3 mt-6">
+                    <button (click)="register()" type="submit" [disabled]="!RegisterForm.valid"
+                        class="btn btn-primary flex-1 text-sm shadow-lg hover:shadow-xl transition-all">
+                        Create Account
+                    </button>
+                    <button type="button" (click)="cancel()" class="btn btn-ghost border-base-300 flex-1 text-lg">
+                        Cancel
+                    </button>
+                </div>
+
+                <div class="text-center mt-4">
+                    <span class="text-sm">Already have an account? </span>
+                    <a class="link link-primary no-underline font-bold hover:underline">Log in</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
