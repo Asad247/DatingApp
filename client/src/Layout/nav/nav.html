@@ -1,21 +1,32 @@
-<header class="fixed top-0 left-0 w-full z-50 h-16 flex items-center px-6 shadow-lg 
-        bg-linear-to-r from-[#42275a] to-[#734b6d] text-white">
+<header class="fixed top-0 left-0 w-full z-50 h-16 flex items-center px-6 shadow-2xl 
+        bg-linear-to-b from-[#2d1b36] to-[#1a0f1f] border-b border-white/5 text-white">
 
     <div class="flex items-center">
         <a href="#" style="font-family: 'Dancing Script', cursive;" class="text-3xl mr-10">👑 Dating App</a>
     </div>
+    @if(accountService.currentUser()) {
+    <div class="absolute left-1/2 transform -translate-x-1/2 flex gap-10 text-3xl"> <a routerLink="/matches"
+            routerLinkActive="active-link" style="font-family: 'Dancing Script';"
+            class="inline-block w-40 text-center py-2 transition-all duration-300 hover:text-cyan-600 hover:scale-125 hover:animate-[wobble_0.4s_ease-in-out_infinite]">
+            Matches
+        </a>
 
-    <div class="absolute left-1/2 transform -translate-x-1/2 flex gap-10 text-lg">
-        <a href="#" class="px-4 py-2 hover:text-pink-200">Matches</a>
-        <a href="#" class="px-4 py-2 hover:text-pink-200">List</a>
-        <a href="#" class="px-4 py-2 hover:text-pink-200">Messages</a>
+        <a routerLink="/lists" routerLinkActive="active-link" style="font-family: 'Dancing Script';"
+            class="inline-block w-40 text-center py-2 transition-all duration-300 hover:text-cyan-600 hover:scale-125 hover:animate-[wobble_0.4s_ease-in-out_infinite]">
+            List
+        </a>
+
+        <a routerLink="/messages" routerLinkActive="active-link" style="font-family: 'Dancing Script';"
+            class="inline-block w-40 text-center py-2 transition-all duration-300 hover:text-cyan-600 hover:scale-125 hover:animate-[wobble_0.4s_ease-in-out_infinite]">
+            Messages
+        </a>
     </div>
-
+    }
     <div class="ml-auto flex items-center gap-4">
         @if (accountService.currentUser(); as user) {
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn m-1">Menu</div>
-            <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+            <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm text-black">
                 <li><a>Profile</a></li>
                 <li><a>Settings</a></li>
                 <li><a (click)="logout()">Logout</a></li>
@@ -30,9 +41,9 @@
         @else {
         <form #loginForm="ngForm" (ngSubmit)="login()" class="flex items-center gap-4">
             <input [(ngModel)]="creds.email" name="email" type="email" placeholder="Email"
-                class="input input-bordered input-sm bg-white text-black" />
+                class="input input-bordered input-sm bg-white text-black focus:outline-none" />
             <input [(ngModel)]="creds.password" name="password" type="password" placeholder="Password"
-                class="input input-bordered input-sm bg-white text-black" />
+                class="input input-bordered input-sm bg-white text-black focus:outline-none" />
             <button type="submit" class="btn btn-sm btn-primary">Login</button>
         </form>
         }

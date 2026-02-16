@@ -2,16 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountServices } from '../../Core/account-services';
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { ToastService } from '../../toast-service';
 
 @Component({
   selector: 'app-nav',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './nav.html',
   styleUrl: './nav.css',
 })
 export class Nav implements OnInit {
   protected accountService = inject(AccountServices);
   protected creds: any = {};
+  protected router = inject(Router);
+  protected toastService = inject(ToastService);
   // protected IsLoggedIn = signal(false);
 
 
@@ -19,6 +23,7 @@ export class Nav implements OnInit {
     const userString = localStorage.getItem('user');
     if (userString) {
       const user = JSON.parse(userString);
+      this.accountService.setCurrentUser(user);
       // this.IsLoggedIn.set(true);
     }
   }
@@ -28,8 +33,9 @@ export class Nav implements OnInit {
         console.log(res),
           // this.IsLoggedIn.set(true);
           this.creds = {};
+        this.router.navigateByUrl('/messages');
       },
-      error: err => alert(err)
+      error: err => this.toastService.error("Panlun login karne aaya hai panlun")
     });
   };
 
@@ -37,6 +43,8 @@ export class Nav implements OnInit {
   logout() {
     // this.IsLoggedIn.set(false);
     this.accountService.logout();
+    this.router.navigateByUrl("/");
   }
+
 }
 

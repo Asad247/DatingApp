@@ -2,3 +2,7 @@
 
 @import "tailwindcss";
 @plugin "daisyui";
+
+html {
+    scrollbar-gutter: stable;
+}
