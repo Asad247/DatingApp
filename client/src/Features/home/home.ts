@@ -1,17 +1,18 @@
-import { Component, inject, Input, input, signal } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { AccountServices } from '../../Core/account-services';
 import { Register } from "../Accounts/register/register";
 import { user } from '../../types/user';
-import { required } from '@angular/forms/signals';
+import { TestErrors } from "../test-errors/test-errors";
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [Register],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrls: ['./home.css'],
 })
 export class Home {
-  @Input({ required: true }) membersFromAppts: user[] = [];
+  @Input() membersFromAppts: user[] = [];
   protected isRegisterMode = signal(false);
   protected accountService = inject(AccountServices);
 

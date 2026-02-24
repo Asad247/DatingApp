@@ -4,37 +4,46 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ToastService {
-  constructor() {
-    this.createToastContainer();
-  }
-  private createToastContainer() {
-    if (!document.getElementById('toast-container')) {
-      const container = document.createElement('div');
+  private getContainer(): HTMLElement {
+    let container = document.getElementById('toast-container');
+
+    if (!container) {
+      container = document.createElement('div');
       container.id = 'toast-container';
-      container.className = 'toast toast-bottom toast-end';
+      // Added z-[9999] to ensure it stays above modals/splash screens
+      container.className = 'toast toast-bottom toast-end z-[9999] p-4';
       document.body.appendChild(container);
     }
+
+    return container;
   }
 
   private createToastElement(message: string, alertClass: string, duration = 5000) {
-    const toastContainer = document.getElementById('toast-container');
-    if (!toastContainer) return;
+    const toastContainer = this.getContainer();
 
     const toast = document.createElement('div');
-    toast.classList.add('alert', alertClass, 'shadow-lg');
-    toast.innerHTML = `
-    <span>${message}</span>
-    <button class="ml-4 btn btn-sm btn-ghost">x</button>
-  `;
+    toast.classList.add('alert', alertClass, 'shadow-lg', 'mb-2', 'flex', 'justify-between');
 
-    toast.querySelector('button')?.addEventListener('click', () => {
-      toastContainer.removeChild(toast);
+    // Safety check: if message is an object (common in Http errors), stringify it
+    const displayMessage = typeof message === 'object' ? JSON.stringify(message) : message;
+
+    toast.innerHTML = `
+      <span>${displayMessage}</span>
+      <button class="ml-4 btn btn-sm btn-ghost text-current">✕</button>
+    `;
+
+    // Manual removal on click
+    const closeBtn = toast.querySelector('button');
+    closeBtn?.addEventListener('click', () => {
+      toast.remove();
     });
 
-    toastContainer.append(toast);
+    toastContainer.appendChild(toast);
+
+    // Auto-remove after duration
     setTimeout(() => {
-      if (toastContainer.contains(toast)) {
-        toastContainer.removeChild(toast);
+      if (toast.parentElement) {
+        toast.remove();
       }
     }, duration);
   }
@@ -54,5 +63,4 @@ export class ToastService {
   info(message: string, duration?: number) {
     this.createToastElement(message, 'alert-info', duration);
   }
-
 }
