@@ -5,7 +5,7 @@ import { Location } from '@angular/common'; // 1. Import Location
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './not-found.html',
   styleUrl: './not-found.css',
 })
