@@ -7,6 +7,11 @@ import { Messages } from '../Features/messages/messages';
 import { authGuard } from '../Core/guards/auth-guard';
 import { TestErrors } from '../Features/test-errors/test-errors';
 import { NotFound } from '../Shared/errors/not-found/not-found';
+import { Component } from '@angular/core';
+import { MemberProfile } from '../Features/members/member-profile/member-profile';
+import { MemberPhotos } from '../Features/members/member-photos/member-photos';
+import { MemberMessages } from '../Features/members/member-messages/member-messages';
+import { memberResolver } from '../Features/members/member-resolver';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -16,7 +21,25 @@ export const routes: Routes = [
         canActivate: [authGuard],
         children: [
             { path: 'members', component: MemberList },
-            { path: 'members/:id', component: MemberDetails },
+            {
+                path: 'members/:id', component: MemberDetails,
+                resolve: { member: memberResolver },
+                runGuardsAndResolvers: 'always',
+                children: [
+                    {
+                        path: '', redirectTo: 'profile', pathMatch: 'full'
+                    },
+                    {
+                        path: 'profile', component: MemberProfile, title: 'Profile'
+                    },
+                    {
+                        path: 'photos', component: MemberPhotos, title: 'Photos'
+                    },
+                    {
+                        path: 'messages', component: MemberMessages, title: 'Messages'
+                    }
+                ]
+            },
             { path: 'lists', component: Lists },
             { path: 'messages', component: Messages },
         ]

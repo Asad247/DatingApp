@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { user, userLogin, userRegister } from '../types/user';
 import { tap } from 'rxjs/internal/operators/tap';
 import { ToastService } from '../toast-service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class AccountServices {
   protected toast = inject(ToastService);
   currentUser = signal<user | null>(null);
 
-  url = 'https://localhost:5001/api/account/';
+  url = environment.apiUrl + 'account/';
 
   login(creds: userLogin) {
     return this.http.post<user>(this.url + 'login', creds).pipe(

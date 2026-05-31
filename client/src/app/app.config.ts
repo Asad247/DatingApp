@@ -6,12 +6,13 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { InitService } from '../init-service';
 import { lastValueFrom } from 'rxjs';
 import { errorInterceptor } from '../Core/interceptors/error-interceptor';
+import { jwtInterceptor } from '../Core/interceptors/jwt-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withViewTransitions()),
-    provideHttpClient(withInterceptors([errorInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor])),
     provideAppInitializer(async () => {
       const initService = inject(InitService);
 

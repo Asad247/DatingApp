@@ -11,7 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class TestErrors {
   private http = inject(HttpClient);
-  baseURL = " https://localhost:5001/api/";
+  baseURL = "https://localhost:5001/api/";
+  // baseURL = "https://192.168.0.100:5001/api/"
 
   get404error() {
     this.http.get(this.baseURL + "buggy/not-found").subscribe({

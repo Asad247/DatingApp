@@ -1,0 +1,42 @@
+@if(member(); as member) {
+<div class="w-full min-h-full p-4 sm:p-8 flex justify-center items-start">
+    <div
+        class="card w-full max-w-4xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-1 shadow-2xl rounded-2xl">
+
+        <div class="card-body bg-base-100/90 backdrop-blur-sm gap-8 rounded-[14px]">
+
+            <section class="flex flex-col gap-3">
+                <h2 class="text-xs font-black text-primary uppercase tracking-widest opacity-70">About Member</h2>
+                <p class="text-base-content/80 leading-relaxed text-lg font-light">
+                    @if(memberService.editMode())
+                    {
+                        <div>
+                            Member Nigga Pressed The edit nigga button nigga jan saani
+                        </div>
+                    }
+                    @else {
+                    {{ member.description }}
+                    }
+                </p>
+            </section>
+
+            <div class="divider mt-0 mb-0 opacity-20"></div>
+
+            <section class="stats stats-vertical sm:stats-horizontal bg-base-200/30 w-full overflow-hidden">
+
+                <div class="stat place-items-center">
+                    <div class="stat-title text-xs font-bold uppercase">Member Since</div>
+                    <div class="stat-value text-xl mt-2 text-base-content">{{ member.created | date:'longDate' }}</div>
+                </div>
+
+                <div class="stat place-items-center">
+                    <div class="stat-title text-xs font-bold uppercase">Last Active</div>
+                    <div class="stat-value text-xl mt-2 text-base-content">{{ member.lastActive | date:'short' }}</div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+</div>
+}

@@ -21,9 +21,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyHeader()
+        policy.WithOrigins("http://localhost:4200", "https://localhost:4200", "http://192.168.0.100:4200")
+              .AllowAnyHeader()
               .AllowAnyMethod()
-              .WithOrigins("http://localhost:4200", "https://localhost:4200");
+              .AllowCredentials(); // Try adding this
     });
 });
 
@@ -50,11 +51,11 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseMiddleware<ExceptionMiddleware>();
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseCors("AllowAll");
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
