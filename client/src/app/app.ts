@@ -5,6 +5,7 @@ import { AccountServices } from '../Core/account-services';
 import { Home } from "../Features/home/home";
 import { user } from '../types/user';
 import { RouterOutlet } from '@angular/router';
+import { LoadingService } from '../Core/services/loading-service';
 
 
 
@@ -16,6 +17,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   private http = inject(HttpClient);
+  protected loadingService = inject(LoadingService);
   public readonly title = 'Dating App';
   protected members = signal<user[]>([])
 
