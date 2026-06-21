@@ -1,0 +1,25 @@
+.photo-card {
+    position: relative;
+}
+
+.photo-actions {
+    display: none;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    gap: 0.5rem;
+    align-items: center;
+    z-index: 20;
+}
+
+.photo-card:hover .photo-actions {
+    display: flex;
+}
+
+.photo-actions button {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.photo-actions button:hover {
+    transform: translateY(-1px);
+}

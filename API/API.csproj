@@ -8,11 +8,16 @@
 
   <ItemGroup>
  
+    <PackageReference Include="CloudinaryDotNet" Version="1.29.1" />
+ 
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.2" />
  
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.2" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.15.0" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.14" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="2.1.14" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.14" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
   </ItemGroup>
 
@@ -21,6 +26,7 @@
     <Folder Include="Entities\" />
     <Folder Include="Errors\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Helpers\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Middleware\" />
     <Folder Include="Services\" />

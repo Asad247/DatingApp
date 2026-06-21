@@ -1,28 +1,56 @@
-<div class="hero min-h-screen">
-    @if (!isRegisterMode()) { <div class="hero-content text-center">
-        <div class="flex flex-col items-center gap-6 -mt-60">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="size-25 text-primary">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-            </svg>
-
-            <h1 class="text-6xl font-bold">Meet New People!</h1>
-            <p>Join right now and find social connections!</p>
-
-            <div class="flex items-center gap-3">
-                <button class="btn btn-primary btn-lg">Login</button>
-                <button (click)="showRegister()" class="btn btn-info btn-lg">Register</button>
-            </div>
-            <!-- <div class="mt-6 w-full">
-                <app-test-errors></app-test-errors>
-            </div> -->
+<div class="hero min-h-[calc(100vh-5rem)] relative overflow-hidden">
+  @if (!isRegisterMode()) {
+    <div class="hero-content text-center z-10 relative">
+      <div class="flex flex-col items-center gap-8 max-w-2xl">
+        <div
+          class="p-5 rounded-full bg-white/5 border border-white/10 shadow-[0_0_40px_rgba(8,145,178,0.15)] backdrop-blur-sm"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-20 h-20 text-cyan-400"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
+            />
+          </svg>
         </div>
-    </div>}
-    @else {
-    <div class="flex items-center min-h-screen">
-        <app-register (cancelRegister)="unshowRegister()"></app-register>
-    </div>
-    }
 
+        <div class="space-y-4">
+          <h1
+            class="text-7xl text-white drop-shadow-xl"
+            style="font-family: 'Dancing Script', cursive"
+          >
+            Meet New People
+          </h1>
+          <p class="text-lg text-white/60 font-light tracking-wide max-w-md mx-auto">
+            Join the network right now and find genuine social connections in real-time.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full justify-center">
+          <button
+            class="btn w-full sm:w-40 bg-white/5 hover:bg-white/10 text-white border border-white/20 rounded-full transition-all duration-300 backdrop-blur-sm"
+          >
+            Login
+          </button>
+          <button
+            (click)="showRegister()"
+            class="btn w-full sm:w-40 bg-cyan-600 hover:bg-cyan-500 text-white border-none shadow-[0_0_20px_rgba(8,145,178,0.4)] hover:shadow-[0_0_30px_rgba(8,145,178,0.6)] rounded-full transition-all duration-300"
+          >
+            Register
+          </button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="hero-content w-full max-w-none justify-center items-start pt-6 z-10 relative">
+      <app-register (cancelRegister)="unshowRegister()" class="w-full"></app-register>
+    </div>
+  }
 </div>

@@ -1,0 +1,62 @@
+/* Styles for register component select dropdown */
+select[formControlName="gender"] {
+  background-color: rgba(255,255,255,0.04);
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.12);
+  padding: 0.5rem 0.75rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%),
+    linear-gradient(135deg, #ffffff 50%, transparent 50%),
+    linear-gradient(to right, rgba(255,255,255,0.08), rgba(255,255,255,0.08));
+  background-position: calc(100% - 1rem) calc(1em + 2px), calc(100% - 0.75rem) calc(1em + 2px), 100% 0;
+  background-size: 0.45em 0.45em, 0.45em 0.45em, 1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+/* Best-effort: style the option list background (browser support varies) */
+select[formControlName="gender"] option {
+  background-color: #111827; /* dark gray */
+  color: #fff;
+}
+
+/* Ensure the select appears above other elements when opened */
+select[formControlName="gender"] {
+  position: relative;
+  z-index: 50;
+}
+
+/* Styles for the date input */
+input[type="date"][formControlName="dateOfBirth"] {
+  background-color: rgba(255,255,255,0.04);
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.12);
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input[type="date"][formControlName="dateOfBirth"]:hover {
+  border-color: rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.06);
+}
+
+input[type="date"][formControlName="dateOfBirth"]:focus {
+  border-color: #06b6d4;
+  background-color: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+/* Style the calendar icon */
+input[type="date"][formControlName="dateOfBirth"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
+
+/* Firefox calendar icon */
+input[type="date"][formControlName="dateOfBirth"]::-moz-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
+

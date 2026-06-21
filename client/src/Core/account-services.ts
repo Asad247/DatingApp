@@ -17,10 +17,11 @@ export class AccountServices {
 
   login(creds: userLogin) {
     return this.http.post<user>(this.url + 'login', creds).pipe(
-      tap(user => {
+      tap((user) => {
         this.setCurrentUser(user);
-        this.toast.success("Fuck a nigga logged in");
-      })
+        // this.toast.success("Fuck a nigga logged in");
+        console.log(user);
+      }),
     );
   }
 
@@ -32,16 +33,14 @@ export class AccountServices {
 
   register(creds: userRegister) {
     return this.http.post<user>(this.url + 'register', creds).pipe(
-      tap(user => {
-        this.setCurrentUser(user)
-      })
+      tap((user) => {
+        this.setCurrentUser(user);
+      }),
     );
   }
-
 
   logout() {
     this.currentUser.set(null);
     localStorage.removeItem('user');
   }
 }
-

@@ -1,11 +1,17 @@
 <app-nav></app-nav>
 
 @if (loadingService.loadingRequestCount() > 0) {
-  <div class="fixed inset-0 z-50 flex items-center justify-center bg-base-100/60 backdrop-blur-sm">
-    <div class="flex flex-col items-center gap-4 p-8 shadow-2xl bg-base-200 rounded-box border border-base-300">
-      <span class="loading loading-infinity loading-lg text-primary"></span>
-      <h3 class="text-lg font-bold text-base-content">Processing</h3>
-      <p class="text-sm text-base-content/70">Please wait while we fetch the data...</p>
+  <div
+    class="fixed inset-0 z-100 flex items-center justify-center bg-[#1a0f1f]/80 backdrop-blur-md transition-all duration-300"
+  >
+    <div
+      class="flex flex-col items-center gap-6 p-10 shadow-[0_0_50px_rgba(8,145,178,0.15)] bg-white/5 rounded-3xl border border-white/10"
+    >
+      <span class="loading loading-ring loading-lg text-cyan-400 scale-150"></span>
+      <div class="text-center space-y-1">
+        <h3 class="text-xl font-light text-white tracking-wider">Processing</h3>
+        <p class="text-xs text-cyan-400/60 font-semibold tracking-[0.2em] uppercase">Please wait</p>
+      </div>
     </div>
   </div>
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountServices } from '../../Core/account-services';
-import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastService } from '../../toast-service';
 
 @Component({
@@ -18,7 +18,6 @@ export class Nav implements OnInit {
   protected toastService = inject(ToastService);
   // protected IsLoggedIn = signal(false);
 
-
   ngOnInit(): void {
     const userString = localStorage.getItem('user');
     if (userString) {
@@ -29,22 +28,19 @@ export class Nav implements OnInit {
   }
   login() {
     this.accountService.login(this.creds).subscribe({
-      next: res => {
-        console.log(res),
+      next: (res) => {
+        (console.log(res),
           // this.IsLoggedIn.set(true);
-          this.creds = {};
+          (this.creds = {}));
         this.router.navigateByUrl('/messages');
       },
-      error: err => this.toastService.error("Panlun login karne aaya hai panlun")
+      error: (err) => this.toastService.error(err),
     });
-  };
-
+  }
 
   logout() {
     // this.IsLoggedIn.set(false);
     this.accountService.logout();
-    this.router.navigateByUrl("/");
+    this.router.navigateByUrl('/');
   }
-
 }
-
